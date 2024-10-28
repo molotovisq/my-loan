@@ -9,10 +9,10 @@ services:
         volumes:
             - '.:/application'
         environment:
-            - MYSQL_ROOT_PASSWORD=root@pasCK1
-            - MYSQL_DATABASE=my-loan
+            - MYSQL_ROOT_PASSWORD=root@Pass1
+            - MYSQL_DATABASE=myloan
             - MYSQL_USER=myloan
-            - MYSQL_PASSWORD=loan@passCK4
+            - MYSQL_PASSWORD=loan@Pass2
         ports:
             - '19003:3306'
 
