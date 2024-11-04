@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,11 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ClientFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         // Array de sufixos para o apelido
@@ -24,19 +20,19 @@ class ClientFactory extends Factory
             'do mercado',
             'do restaurante',
             'da oficina',
-            // Adicione outros sufixos conforme necessário
+            'do desmanche',
         ];
 
-        // Nome completo gerado aleatoriamente
-        $name = fake()->name();
+        $user = User::factory()->create();
 
-        // Extrair o primeiro nome
-        $firstName = explode(' ', $name)[0];
+        $firstName = explode(' ', $user->name)[0];
+
+        $nickname = $firstName . ' ' . $this->faker->randomElement($nickSuffixes);
 
         return [
-            'name' => $name,
-            'nickname' => $firstName . ' ' . fake()->randomElement($nickSuffixes),
-            'description' => fake()->text(),
+            'user_id' => $user->id,
+            'nickname' => $nickname,
+            'description' => $this->faker->text(),
         ];
     }
 }
