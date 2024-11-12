@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Client;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class
+        ]);
 
-        User::firstOrCreate(
+        $rootUser = User::firstOrCreate(
             ['email' => 'root@example.com'],
             [
                 'name' => 'root',
@@ -24,6 +28,12 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $this->callOnce(ClientSeeder::class);
+        if (!$rootUser->hasRole('root')) {
+            $rootUser->assignRole('root');
+        }
+
+        if (Client::count() === 0) {
+            $this->call(ClientSeeder::class);
+        }
     }
 }

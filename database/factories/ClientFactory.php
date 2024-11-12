@@ -25,6 +25,8 @@ class ClientFactory extends Factory
 
         $user = User::factory()->create();
 
+        $user->assignRole('client');
+
         $firstName = explode(' ', $user->name)[0];
 
         $nickname = $firstName . ' ' . $this->faker->randomElement($nickSuffixes);
