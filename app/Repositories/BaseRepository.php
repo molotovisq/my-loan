@@ -18,9 +18,26 @@ abstract class BaseRepository
         return $this->model::all();
     }
 
-    public function find($id)
+    public function find(int $id)
     {
         return $this->model::find($id);
+    }
+
+    public function store(array $data)
+    {
+        return $this->model::create($data);
+    }
+
+    public function update(int $id, array $data)
+    {
+        $model = $this->model::find($id);
+
+        if ($model) {
+            $model->update($data);
+            return $model;
+        }
+
+        return null;
     }
 
     public function destroy($id)
