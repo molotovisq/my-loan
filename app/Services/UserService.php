@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Interfaces\UserRepositoryInterface;
 use App\Repositories\UserRepository;
+use App\DTO\UserDTO;
 
 class UserService
 {
@@ -23,5 +24,12 @@ class UserService
     public function findById(int $id)
     {
         return $this->userRepository->find($id);
+    }
+
+    public function store(UserDTO $userDTO)
+    {
+
+        dd($userDTO);
+        return $this->userRepository->store([]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\UserDTO;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Requests\User\ShowUserRequest;
@@ -29,5 +30,20 @@ class UserController extends Controller
         $user = $this->userService->findById($id);
 
         return response()->json($user);
+    }
+
+    public function store(Request $request)
+    {
+        dd(123);
+        $user = new UserDTO();
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+
+
+        $storedUser = $this->userService->store($user);
+
+        return response()->json($storedUser);
     }
 }
