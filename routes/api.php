@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 // })->middleware('auth:sanctum');
 
 Route::prefix('user')->name('user.')->group(function () {
-    Route::get('/', [UserController::class, 'index'])
-        ->name('index')
-        ->middleware('can:show users');
+    Route::get('/', [UserController::class, 'index'])->name('index');
+
+    Route::get('/{id}', [UserController::class, 'show'])->name('show');
 });

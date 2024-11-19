@@ -19,4 +19,9 @@ class UserService
     {
         return $this->userRepository->all();
     }
+
+    public function findById(int $id)
+    {
+        return $this->userRepository->find($id);
+    }
 }
