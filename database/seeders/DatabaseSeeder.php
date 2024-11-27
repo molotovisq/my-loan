@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Client;
+use App\Models\Provider;
 use App\Models\User;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +35,10 @@ class DatabaseSeeder extends Seeder
 
         if (Client::count() === 0) {
             $this->call(ClientSeeder::class);
+        }
+
+        if (Provider::count() === 0) {
+            $this->call(ProviderSeeder::class);
         }
     }
 }
