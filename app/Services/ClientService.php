@@ -24,4 +24,9 @@ class ClientService
     {
         return $this->clientRepository->find($id);
     }
+
+    public function findWithUser(int $id)
+    {
+        return $this->clientRepository->findWithRelation($id, ['user']);
+    }
 }

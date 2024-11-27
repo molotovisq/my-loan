@@ -16,4 +16,9 @@ class ClientRepository extends BaseRepository implements ClientRepositoryInterfa
     {
         return $this->model::where('nickname', 'LIKE', '%' . $nickname . '%')->get();
     }
+
+    public function findWithRelation(int $id, array $relationships = [])
+    {
+        return $this->model::with($relationships)->findOrFail($id);
+    }
 }

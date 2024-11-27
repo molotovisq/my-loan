@@ -25,7 +25,7 @@ class ClientController extends Controller
 
     public function show(ShowUserRequest $request)
     {
-        $clients = $this->clientService->findById($request->id);
+        $clients = $this->clientService->findWithUser($request->id);
 
         return response()->json($clients);
     }

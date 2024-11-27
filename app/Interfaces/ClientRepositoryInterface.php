@@ -58,4 +58,14 @@ interface ClientRepositoryInterface
      * @return \Illuminate\Database\Eloquent\Collection|Client[] A collection of clients matching the search criteria.
      */
     public function searchByNickname(string $nickname);
+
+
+    /**
+     * Find a client by its id and loads yout relationships
+     *
+     * @param integer $id
+     * @param array $relationships
+     * @return void
+     */
+    public function findWithRelation(int $id, array $relationships = []);
 }
