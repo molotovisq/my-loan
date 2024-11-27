@@ -40,5 +40,7 @@ class DatabaseSeeder extends Seeder
         if (Provider::count() === 0) {
             $this->call(ProviderSeeder::class);
         }
+
+        $this->call(LoanSeeder::class);
     }
 }
