@@ -32,5 +32,10 @@ class RoleSeeder extends Seeder
         $client->givePermissionTo([
             'show own profile'
         ]);
+
+        $provider = Role::create(['name' => 'provider']);
+        $provider->givePermissionTo([
+            'show own profile'
+        ]);
     }
 }
