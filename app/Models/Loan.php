@@ -21,4 +21,14 @@ class Loan extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }
