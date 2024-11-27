@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,12 +28,15 @@ class ClientFactory extends Factory
 
         $user->assignRole('client');
 
+        $address = Address::factory()->create();
+
         $firstName = explode(' ', $user->name)[0];
 
         $nickname = $firstName . ' ' . $this->faker->randomElement($nickSuffixes);
 
         return [
             'user_id' => $user->id,
+            'address_id' => $address->id,
             'nickname' => $nickname,
             'description' => $this->faker->text(),
         ];
