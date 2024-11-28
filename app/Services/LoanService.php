@@ -27,6 +27,6 @@ class LoanService
 
     public function findWithRelation(int $id)
     {
-        return $this->loanRepository->findWithRelation($id, ['provider', 'client']);
+        return $this->loanRepository->findWithRelation($id, ['provider', 'client', 'messages']);
     }
 }
