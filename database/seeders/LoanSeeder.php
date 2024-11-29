@@ -13,6 +13,6 @@ class LoanSeeder extends Seeder
     public function run(): void
     {
         // Create fake loans
-        Loan::factory(10)->create();
+        Loan::factory(1000)->create();
     }
 }

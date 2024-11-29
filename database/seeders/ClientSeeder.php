@@ -16,6 +16,6 @@ class ClientSeeder extends Seeder
     public function run()
     {
         // Create 10 client then create one user per client
-        Client::factory(10)->create();
+        Client::factory(1000)->create();
     }
 }
