@@ -47,34 +47,29 @@ Aplicação para gerenciamento de empréstimos pessoais
     DB_CONNECTION=mariadb
     DB_HOST=mariadb
     DB_PORT=3306
-    DB_DATABASE=my-loan
+    DB_DATABASE=myloan
     DB_USERNAME=myloan
-    DB_PASSWORD=loan@passCK4
+    DB_PASSWORD=loan@Pass2
     ```
 
-3. **Inicie os Contêineres Docker**
-
-    Execute o seguinte comando para iniciar os contêineres:
-
-    ```bash
-    docker-compose up -d
-    ```
-
-4. **Acesse o Contêiner PHP**
-
-    ```bash
-    docker exec -it <nome_do_container_php> /bin/sh
-    ```
-
-    Substitua `<nome_do_container_php>` pelo nome real do contêiner PHP, que pode ser encontrado com o comando `docker ps`.
-
-5. **Instale as Dependências do Composer**
-
-    Dentro do contêiner PHP, execute:
+3. **Instale as Dependências do Composer**
 
     ```bash
     composer install
     ```
+
+4. **Gere a chave da aplicação**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+5. **Suba os containers com o laravel sail**
+
+    ```bash
+    ./vendor/bin/sail up
+    ```
+    >Caso ao subir os containers, ocorra algum problema relacionado á conexão com o banco de dados, procurar o volume do banco com `docker volume ls` e remover ele com o comando: `docker volume rm <volume_name>`
 
 6. **Ajuste as Permissões das Pastas Necessárias**
 
@@ -86,11 +81,10 @@ Aplicação para gerenciamento de empréstimos pessoais
     chown -R www-data:www-data storage bootstrap/cache
     ```
 
-7. **Gere a chave da aplicação**
-
     ```bash
-    php artisan key:generate
+    chmod o+w storage/ -R
     ```
+
 
 8. **Execute as _Migrations_**
 
@@ -101,10 +95,10 @@ Aplicação para gerenciamento de empréstimos pessoais
 9. **Acesse a Aplicação**
 
     ```
-    http://localhost:19000
+    http://localhost:3001
     ```
 
-### Solução de Problemas
+### Observações
 
 -   **Erro de Permissão**: Se você encontrar erros de permissão, verifique as permissões das pastas `storage` e `bootstrap/cache`.
 -   **Erro de Conexão com o Banco de Dados**: Verifique suas configurações no arquivo `.env` e certifique-se de que o contêiner MariaDB está em execução.
